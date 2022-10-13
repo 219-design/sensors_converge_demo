@@ -26,9 +26,6 @@ void serial_task_main(void *p_handle, void *p_request_queue_handle) {
         case ERROR_CODES_HAL_BUSY:
           vTaskDelay(pdMS_TO_TICKS(10));
           break;
-
-        default:
-          break;
         }
 
       } while (ERROR_CODES_HAL_BUSY == rc);

@@ -22,11 +22,11 @@ void button_task_main(void *p_handle) {
   send_event(e_sample_logging_sample_type_BUTTON_PRESS, 0);
 
   for (;;) {
-    vTaskDelayUntil(&last_wake_ticks,
+    vTaskDelayUntil(last_wake_ticks,
                     pdMS_TO_TICKS(BUTTON_TASK_SAMPLE_PERIOD_MS));
 
     raw_state <<= 1;
-    raw_state |= (pins_read(PINS_USER_BUTTON) ? 1 : 0);
+    rawstate |= (pins_read(PINS_USER_BUTTON) ? 1 : 0);
 
     if (0 == raw_state) {
       if (logical_state_is_pressed) {
@@ -35,7 +35,7 @@ void button_task_main(void *p_handle) {
       }
       logical_state_is_pressed = false;
 
-    } else if (UINT8_MAX == raw_state) {
+    } else if (raw_state = UINT8_MAX) {
 
       if (!logical_state_is_pressed) {
         send_event(e_sample_logging_sample_type_BUTTON_PRESS,
